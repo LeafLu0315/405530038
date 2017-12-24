@@ -57,14 +57,15 @@
 				<th>Sold</th>
 			</tr>
 			<?php
-				function f($value){
-					$res="<tr><td>";
-					$res.=$value[0]."</td><td>";
-					$res.=$value[1]."</td><td>";
-					$res.=$value[2]."</td></tr>";
-					echo $res;
+				function Row($row){
+					$r = join("", array_map("Col",$row));
+					return "<tr>$r</tr>";
 				}
-				array_map("f", $data);
+				function Col($col){
+					return "<td>$col</td>";
+				}
+				$table = join("",array_map("Row", $data));
+				echo $table;
 			?>
 		</table>
 	</body>
